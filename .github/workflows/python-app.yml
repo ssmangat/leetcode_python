@@ -31,7 +31,7 @@ jobs:
       run: |
         uv venv
         source .venv/bin/activate
-        uv pip install
+        uv pip install -r pyproject.toml
         
     - name: Test with pytest
       run: |
