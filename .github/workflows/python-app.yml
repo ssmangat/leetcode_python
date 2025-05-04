@@ -1,0 +1,39 @@
+name: Leetcode Tests
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Python 3.13
+      uses: actions/setup-python@v4
+      with:
+        python-version: "3.13"
+
+    - name: uv-venv
+  # You may pin to the exact commit or the version.
+  # uses: andgineer/uv-venv@adba87b45e1fdc10801766ca435a92d558137c46
+      uses: andgineer/uv-venv@v1.1
+          
+
+    - name: Install dependencies with uv
+      run: |
+        uv venv
+        source .venv/bin/activate
+        uv pip install
+        
+    - name: Test with pytest
+      run: |
+        source .venv/bin/activate
+        pytest
